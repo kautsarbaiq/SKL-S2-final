@@ -4,16 +4,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Edit Catatan') }}</div>
+                <div class="card shadow">
+                    <div class="card-header bg-warning text-dark d-flex align-items-center">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        <span class="fs-5 fw-semibold">{{ __('Edit Catatan') }}</span>
+                    </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-4">
                         <form method="POST" action="{{ route('notes.update', $note) }}">
                             @csrf
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="title" class="form-label">{{ __('Judul') }}</label>
+                                <label for="title" class="form-label fw-semibold">
+                                    <i class="bi bi-type me-1"></i>{{ __('Judul') }}
+                                </label>
                                 <input id="title" type="text"
                                     class="form-control @error('title') is-invalid @enderror" name="title"
                                     value="{{ old('title', $note->title) }}" required autocomplete="title" autofocus>
@@ -26,8 +31,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="content" class="form-label">{{ __('Isi Catatan') }}</label>
-                                <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content" rows="10"
+                                <label for="content" class="form-label fw-semibold">
+                                    <i class="bi bi-file-text me-1"></i>{{ __('Isi Catatan') }}
+                                </label>
+                                <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content" rows="12"
                                     required>{{ old('content', $note->content) }}</textarea>
 
                                 @error('content')
@@ -37,10 +44,12 @@
                                 @enderror
                             </div>
 
-                            <div class="d-flex justify-content-between">
-                                <a href="{{ route('notes.index') }}" class="btn btn-secondary">{{ __('Kembali') }}</a>
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Perbarui Catatan') }}
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="{{ route('notes.index') }}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-arrow-left me-1"></i>{{ __('Kembali') }}
+                                </a>
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="bi bi-save me-1"></i>{{ __('Perbarui Catatan') }}
                                 </button>
                             </div>
                         </form>
